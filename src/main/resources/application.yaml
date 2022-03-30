@@ -6,3 +6,9 @@ spring:
     password: admin
     hikari:
       schema: twitter
+  flyway:
+    enabled: 'true'
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: postgres
+    password: admin
+    schemas: twitter
