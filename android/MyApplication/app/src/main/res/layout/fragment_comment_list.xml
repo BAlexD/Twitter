@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.post.CommentListFragment">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:paddingBottom="50dp">
+
+		<ImageButton
+			android:id="@+id/exitButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:padding="8dp"
+			android:src="@android:drawable/btn_dialog"
+			tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+		<RelativeLayout
+			android:id="@+id/comment_post_info"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/exitButton"
+			android:padding="8dp">
+
+			<de.hdodenhof.circleimageview.CircleImageView
+				android:id="@+id/comment_profile_image_view"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:layout_marginEnd="@dimen/text_small_margin"
+				android:src="@mipmap/ic_launcher" />
+
+			<TextView
+				android:id="@+id/comment_author_name_text_view"
+				style="@style/TextView.Primary.Bold"
+				android:layout_toEndOf="@id/comment_profile_image_view"
+				android:text="Автор" />
+
+			<TextView
+				android:id="@+id/comment_author_nick_text_view"
+				style="@style/TextView.Secondary"
+				android:layout_marginStart="@dimen/text_small_margin"
+				android:layout_toEndOf="@+id/comment_author_name_text_view"
+				android:text="ник" />
+
+			<TextView
+				android:id="@+id/comment_creation_date_text_view"
+				style="@style/TextView.Secondary"
+				android:layout_marginStart="@dimen/text_small_margin"
+				android:layout_toEndOf="@+id/comment_author_nick_text_view"
+				android:ellipsize="end"
+				android:maxLines="1"
+				android:text="нояб. 27" />
+
+			<TextView
+				android:id="@+id/comment_tweet_content_text_view"
+				style="@style/TextView.Primary"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/comment_author_name_text_view"
+				android:layout_marginTop="@dimen/text_small_margin"
+				android:layout_toEndOf="@id/comment_profile_image_view"
+				android:text="Текст постаfhhhhhhhhhhhhhhhhhhhhhhhhhhh." />
+
+
+		</RelativeLayout>
+
+		<View
+				android:id="@+id/delimeter_view"
+				android:layout_width="match_parent"
+				android:layout_height="6dp"
+				android:layout_below="@+id/comment_post_info"
+				android:layout_marginTop="@dimen/text_small_margin"
+				android:background="@color/gray_mercury" />
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/comment_list"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/delimeter_view" />
+			
+		<RelativeLayout
+			xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="match_parent"
+			android:layout_height="100dp"
+			android:padding="8dp"
+			android:layout_below="@+id/comment_list">
+
+
+			<EditText
+				android:id="@+id/comment_edit_text"
+				android:layout_width="match_parent"
+				android:layout_marginEnd="20dp"
+				android:layout_toStartOf="@+id/add_comment_button"
+				android:layout_height="wrap_content"
+				android:hint="введите комментарий..."/>
+
+			<Button
+				android:id="@+id/add_comment_button"
+				android:layout_alignParentEnd="true"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Добавить"/>
+		</RelativeLayout>	
+	</RelativeLayout>
+</FrameLayout>
