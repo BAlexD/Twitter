@@ -27,7 +27,7 @@ import java.util.Collection;
 
 public class UserInfoFragment extends Fragment {
 
-    private ImageView userImageView;
+    //private ImageView userImageView;
     private TextView nameTextView;
     private TextView nickTextView;
     private TextView descriptionTextView;
