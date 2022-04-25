@@ -1,6 +1,7 @@
 package ru.vsu.twitter.entity;
 
 import lombok.*;
+import ru.vsu.twitter.dto.user.UserResponse;
 
 import javax.persistence.*;
 @Entity
@@ -16,9 +17,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    private Long userId;
 
     private String content;
 }

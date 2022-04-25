@@ -3,6 +3,8 @@ package ru.vsu.twitter.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
+
 
 @Entity
 @Setter
@@ -21,4 +23,9 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
+    @OneToMany
+    private Set<Subscribe> subscribes;
+    @OneToMany
+    private Set<Post> posts;
+
 }
