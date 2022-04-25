@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.post.CommentAdapter">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="@dimen/text_small_margin"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/author_name_text_view"
+            style="@style/TextView.Primary.Bold"
+            android:layout_toEndOf="@id/profile_image_view"
+            android:text="Имя" />
+
+        <TextView
+            android:id="@+id/author_nick_text_view"
+            style="@style/TextView.Secondary"
+            android:layout_marginStart="@dimen/text_small_margin"
+            android:layout_toEndOf="@+id/author_name_text_view"
+            android:text="Ник" />
+
+        <TextView
+            android:id="@+id/creation_date_text_view"
+            style="@style/TextView.Secondary"
+            android:layout_marginStart="@dimen/text_small_margin"
+            android:layout_toEndOf="@+id/author_nick_text_view"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="нояб. 27" />
+
+        <TextView
+            android:id="@+id/tweet_content_text_view"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/author_name_text_view"
+            android:layout_marginTop="@dimen/text_small_margin"
+            android:layout_toEndOf="@id/profile_image_view"
+            android:text="Текст комментария" />
+
+    </RelativeLayout>
+
+</FrameLayout>
