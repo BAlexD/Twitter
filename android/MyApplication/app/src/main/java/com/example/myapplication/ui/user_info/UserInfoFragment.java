@@ -21,6 +21,7 @@ import com.example.myapplication.entities.Post;
 import com.example.myapplication.network.TestData;
 import com.example.myapplication.ui.post.CommentListFragment;
 import com.example.myapplication.ui.post.PostAdapter;
+import com.example.myapplication.ui.post.PostPrivateAdapter;
 
 import java.util.Collection;
 
@@ -33,7 +34,7 @@ public class UserInfoFragment extends Fragment {
     private TextView followersCountTextView;
 
     private RecyclerView postsRecyclerView;
-    private PostAdapter postAdapter;
+    private PostPrivateAdapter postPrivateAdapter;
 
     private FragmentUserInfoBinding binding;
 
@@ -63,8 +64,8 @@ public class UserInfoFragment extends Fragment {
         return root;
     }
 
-    public PostAdapter getPostAdapter() {
-        PostAdapter.OnCommentClickListener onCommentClickListener = new PostAdapter.OnCommentClickListener() {
+    public PostPrivateAdapter getPostAdapter() {
+        PostPrivateAdapter.OnCommentClickListener onCommentClickListener = new PostPrivateAdapter.OnCommentClickListener() {
             @Override
             public void onCommentClick(Post post) {
                 Toast.makeText(UserInfoFragment.this.getActivity(), "user " + post.getUser().getName(), Toast.LENGTH_SHORT).show();
@@ -73,15 +74,21 @@ public class UserInfoFragment extends Fragment {
                 startActivity(intent);
             }
         };
-        PostAdapter.OnLikeClickListener onLikeClickListener = new PostAdapter.OnLikeClickListener() {
+        PostPrivateAdapter.OnLikeClickListener onLikeClickListener = new PostPrivateAdapter.OnLikeClickListener() {
             @Override
             public void onLikeClick(Post post) {
                 Toast.makeText(UserInfoFragment.this.getActivity(), "like " + post.getUser().getName(), Toast.LENGTH_SHORT).show();
             }
         };
-        postAdapter = new PostAdapter(onCommentClickListener, onLikeClickListener);
+        PostPrivateAdapter.OnDeleteClickListener onDeleteClickListener = new PostPrivateAdapter.OnDeleteClickListener() {
+            @Override
+            public void onDeleteClick(Post post) {
+                Toast.makeText(UserInfoFragment.this.getActivity(), "delete " + post.getUser().getName(), Toast.LENGTH_SHORT).show();
+            }
+        };
+        postPrivateAdapter = new PostPrivateAdapter(onCommentClickListener, onLikeClickListener, onDeleteClickListener);
         Collection<Post> posts = TestData.getTweets();
-        postAdapter.setItems(posts);
-        return postAdapter;
+        postPrivateAdapter.setItems(posts);
+        return postPrivateAdapter;
     }
 }
