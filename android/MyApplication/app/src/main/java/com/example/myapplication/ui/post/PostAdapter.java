@@ -74,8 +74,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     class PostViewHolder extends RecyclerView.ViewHolder {
-        private ImageView userImageView;
-        private TextView nameTextView;
         private TextView nickTextView;
         private TextView creationDateTextView;
         private TextView contentTextView;
@@ -86,8 +84,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
         public PostViewHolder(View itemView) {
             super(itemView);
-            userImageView = itemView.findViewById(R.id.profile_image_view);
-            nameTextView = itemView.findViewById(R.id.author_name_text_view);
             nickTextView = itemView.findViewById(R.id.author_nick_text_view);
             creationDateTextView = itemView.findViewById(R.id.creation_date_text_view);
             contentTextView = itemView.findViewById(R.id.tweet_content_text_view);
@@ -113,7 +109,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         }
 
         public void bind(Post tweet) {
-            nameTextView.setText(tweet.getUser().getName());
+
             nickTextView.setText(tweet.getUser().getNick());
             contentTextView.setText(tweet.getText());
             commentsTextView.setText(String.valueOf(tweet.getСommentCount()));
@@ -121,8 +117,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
             String creationDateFormatted = getFormattedDate(tweet.getCreationDate());
             creationDateTextView.setText(creationDateFormatted);
-
-            Picasso.with(itemView.getContext()).load(tweet.getUser().getImageUrl()).into(userImageView);
         }
 
         private String getFormattedDate(String rawDate) {

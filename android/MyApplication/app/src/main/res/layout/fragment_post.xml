@@ -11,31 +11,15 @@
 
 	<RelativeLayout
 		android:id="@+id/post_info"
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:padding="8dp"
-		android:layout_toLeftOf="@+id/buttons_container">
-
-
-		<de.hdodenhof.circleimageview.CircleImageView
-			android:id="@+id/profile_image_view"
-			android:layout_width="48dp"
-			android:layout_height="48dp"
-			android:layout_marginEnd="@dimen/text_small_margin"
-			android:src="@mipmap/ic_launcher" />
-
-		<TextView
-			android:id="@+id/author_name_text_view"
-			style="@style/TextView.Primary.Bold"
-			android:layout_toEndOf="@id/profile_image_view"
-			android:text="Автор" />
+		android:padding="5dp"
+		android:layout_toLeftOf="@+id/delete_container">
 
 		<TextView
 			android:id="@+id/author_nick_text_view"
-			style="@style/TextView.Secondary"
-			android:layout_marginStart="@dimen/text_small_margin"
-			android:layout_toEndOf="@+id/author_name_text_view"
-			android:text="ник" />
+			style="@style/TextView.Primary.Bold"
+			android:text="Ник" />
 
 		<TextView
 			android:id="@+id/creation_date_text_view"
@@ -50,30 +34,39 @@
 			android:id="@+id/tweet_content_text_view"
 			style="@style/TextView.Primary"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/author_name_text_view"
+			android:layout_below="@id/author_nick_text_view"
 			android:layout_marginTop="@dimen/text_small_margin"
-			android:layout_toEndOf="@id/profile_image_view"
 			android:text="Текст постаfhhhhhhhhhhhhhhhhhhhhhhhhhhh." />
+
+		</RelativeLayout>
+
+	<RelativeLayout
+		android:id="@+id/delete_container"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:padding="5dp">
+
 	</RelativeLayout>
 
 	<RelativeLayout
 		android:id="@+id/buttons_container"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentRight="true"
-		android:orientation="vertical"
-		android:padding="15dp">
+		android:layout_below="@+id/post_info"
+		android:padding="5dp">
 
 		<LinearLayout
 			android:id="@+id/comments_container"
 			style="@style/HalfWidth"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_toStartOf="@+id/likes_container"
 			android:orientation="vertical">
 
 			<ImageButton
 				android:id="@+id/commentButton"
-				android:layout_width="wrap_content"
+				android:layout_width="100dp"
 				android:layout_height="wrap_content"
 				app:srcCompat="@drawable/comment3"
 				tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -92,12 +85,12 @@
 			style="@style/HalfWidth"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_below="@+id/comments_container"
+			android:layout_alignParentRight="true"
 			android:orientation="vertical">
 
 			<ImageButton
 				android:id="@+id/likeButton"
-				android:layout_width="wrap_content"
+				android:layout_width="100dp"
 				android:layout_height="wrap_content"
 				app:srcCompat="@drawable/like01"
 				tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -109,9 +102,7 @@
 				android:layout_marginStart="@dimen/text_small_margin"
 				android:text="16" />
 		</LinearLayout>
-
 	</RelativeLayout>
-
 </RelativeLayout>
 
 
