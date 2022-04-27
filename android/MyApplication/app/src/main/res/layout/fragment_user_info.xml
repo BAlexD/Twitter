@@ -13,81 +13,55 @@
 		android:paddingBottom = "50dp">
 
 		<RelativeLayout
+			android:id="@+id/user_info_content"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:padding="8dp">
-			
+
 			<TextView
-				android:id="@+id/user_name_text_view"
+				android:id="@+id/user_nick_text_view"
 				style="@style/TextView.Primary"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="@dimen/text_small_margin"
 				android:layout_marginTop="@dimen/text_small_margin"
-				android:text="Имя" />
-
-			<TextView
-				android:id="@+id/user_nick_text_view"
-				style="@style/TextView.Secondary"
-				android:layout_marginStart="@dimen/text_small_margin"
-				android:layout_below="@id/user_name_text_view"
-				android:layout_marginTop="@dimen/text_small_margin"
-				android:text="Ник" />
-
-			<ImageView
-				android:id="@+id/user_image_view"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="250dp"
-				android:layout_marginTop="@dimen/text_small_margin"
-				android:layout_toEndOf="@id/user_name_text_view"
-				android:src="@mipmap/ic_launcher" />
+				android:text="НИК" />
 
 			<TextView
 				android:id="@+id/user_description_text_view"
 				style="@style/TextView.Primary"
-				android:layout_below="@+id/user_nick_text_view"
-				android:layout_marginStart="@dimen/text_small_margin"
+				android:layout_marginStart="177dp"
 				android:layout_marginTop="@dimen/text_small_margin"
+				android:layout_toEndOf="@+id/user_nick_text_view"
 				android:text="Описание" />
-
-			<TextView
-				android:id="@+id/user_location_text_view"
-				style="@style/TextView.Secondary"
-				android:layout_below="@id/user_description_text_view"
-				android:layout_marginStart="@dimen/text_small_margin"
-				android:layout_marginTop="@dimen/text_small_margin"
-				android:text="Местоположение" />
 
 			<TextView
 				android:id="@+id/following_count_text_view"
 				style="@style/TextView.Primary.Bold"
-				android:layout_below="@+id/user_location_text_view"
-				android:layout_marginTop="@dimen/text_small_margin"
+				android:layout_below="@+id/user_description_text_view"
+				android:layout_marginTop="15dp"
 				android:text="4" />
 
 			<TextView
 				android:id="@+id/following_text_view"
 				style="@style/TextView.Secondary"
-				android:layout_below="@+id/user_location_text_view"
+				android:layout_below="@+id/user_description_text_view"
 				android:layout_marginStart="@dimen/text_small_margin"
-				android:layout_marginTop="@dimen/text_small_margin"
+				android:layout_marginTop="15dp"
 				android:layout_toEndOf="@+id/following_count_text_view"
 				android:text="Читает" />
 
 			<TextView
 				android:id="@+id/followers_count_text_view"
 				style="@style/TextView.Primary.Bold"
-				android:layout_below="@+id/user_location_text_view"
-				android:layout_marginStart="20dp"
+				android:layout_below="@+id/following_text_view"
 				android:layout_marginTop="@dimen/text_small_margin"
-				android:layout_toEndOf="@+id/following_text_view"
 				android:text="4" />
 
 			<TextView
 				android:id="@+id/followers_text_view"
 				style="@style/TextView.Secondary"
-				android:layout_below="@+id/user_location_text_view"
+				android:layout_below="@+id/following_text_view"
 				android:layout_marginStart="10dp"
 				android:layout_marginTop="@dimen/text_small_margin"
 				android:layout_toEndOf="@+id/followers_count_text_view"
@@ -96,11 +70,11 @@
 			<Button
 				android:id="@+id/add_post_button"
 				style="@style/TextView.Secondary"
-				android:layout_width="125dp"
-				android:layout_height="wrap_content"
-				android:layout_below="@+id/user_nick_text_view"
-				android:layout_marginStart="41dp"
-				android:layout_marginTop="32dp"
+				android:layout_width="226dp"
+				android:layout_below="@+id/user_description_text_view"
+				android:layout_alignParentRight="true"
+				android:layout_marginStart="62dp"
+				android:layout_marginTop="15dp"
 				android:layout_toEndOf="@+id/followers_text_view"
 				android:text="Добавить пост" />
 		</RelativeLayout>

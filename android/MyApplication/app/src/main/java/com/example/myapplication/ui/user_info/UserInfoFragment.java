@@ -27,11 +27,8 @@ import java.util.Collection;
 
 public class UserInfoFragment extends Fragment {
 
-    private ImageView userImageView;
-    private TextView nameTextView;
     private TextView nickTextView;
     private TextView descriptionTextView;
-    private TextView locationTextView;
     private TextView followingCountTextView;
     private TextView followersCountTextView;
 
@@ -48,22 +45,21 @@ public class UserInfoFragment extends Fragment {
         binding = FragmentUserInfoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        nameTextView = binding.userNameTextView;
-        userViewModel.getUserNameText().observe(getViewLifecycleOwner(), nameTextView::setText);
         nickTextView = binding.userNickTextView;
         userViewModel.getUserNickText().observe(getViewLifecycleOwner(), nickTextView::setText);
+
         descriptionTextView = binding.userDescriptionTextView;
         userViewModel.getUserDescriptionText().observe(getViewLifecycleOwner(), descriptionTextView::setText);
-        locationTextView = binding.userLocationTextView;
-        userViewModel.getUserLocationText().observe(getViewLifecycleOwner(), locationTextView::setText);
+
         followersCountTextView = binding.followersCountTextView;
         userViewModel.getUserFollowersText().observe(getViewLifecycleOwner(), followersCountTextView::setText);
+
         followingCountTextView = binding.followingCountTextView;
         userViewModel.getUserFollowingText().observe(getViewLifecycleOwner(), followingCountTextView::setText);
+
         postsRecyclerView = binding.fragmentPost;
         postsRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         postsRecyclerView.setAdapter(getPostAdapter());
-        //userViewModel.getPostAdapter().observe(getViewLifecycleOwner(), postsRecyclerView::setAdapter);
         return root;
     }
 
