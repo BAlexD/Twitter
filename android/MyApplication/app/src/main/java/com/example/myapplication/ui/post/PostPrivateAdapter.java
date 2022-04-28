@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.entities.Post;
+import com.yandex.metrica.YandexMetrica;
 
 
 import java.util.ArrayList;
@@ -105,6 +106,8 @@ public class PostPrivateAdapter extends RecyclerView.Adapter<PostPrivateAdapter.
                 public void onClick(View v) {
                     Post post = tweetList.get(getLayoutPosition());
                     onCommentClickListener.onCommentClick(post);
+                    String eventParameters = "{\"postID\":\""+post.getId()+"\"}";
+                    YandexMetrica.reportEvent("New comment", eventParameters);
                 }
             });
             likeButton.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +115,8 @@ public class PostPrivateAdapter extends RecyclerView.Adapter<PostPrivateAdapter.
                 public void onClick(View v) {
                     Post post = tweetList.get(getLayoutPosition());
                     onLikeClickListener.onLikeClick(post);
+                    String eventParameters = "{\"postID\":\""+post.getId()+"\"}";
+                    YandexMetrica.reportEvent("New like", eventParameters);
                 }
             });
 
