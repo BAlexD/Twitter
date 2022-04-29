@@ -15,11 +15,9 @@ public class Subscribe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "PROFILE_ID")
-    private User profile;
+    private Long profile;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "SUBSCRIBER_ID")
-    private User subscriber;
+    private Long subscriber;
 }
