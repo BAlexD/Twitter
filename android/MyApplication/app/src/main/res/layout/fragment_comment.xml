@@ -11,17 +11,11 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image_view"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="@dimen/text_small_margin"
-            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/author_name_text_view"
             style="@style/TextView.Primary.Bold"
-            android:layout_toEndOf="@id/profile_image_view"
+            android:layout_marginEnd="@dimen/text_small_margin"
             android:text="Имя" />
 
         <TextView
@@ -45,7 +39,7 @@
             style="@style/TextView.Primary"
             android:layout_below="@id/author_name_text_view"
             android:layout_marginTop="@dimen/text_small_margin"
-            android:layout_toEndOf="@id/profile_image_view"
+            android:layout_marginStart="@dimen/text_small_margin"
             android:text="Текст комментария" />
 
     </RelativeLayout>

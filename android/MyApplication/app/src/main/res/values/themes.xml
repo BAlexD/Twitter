@@ -13,12 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-	
-	<style name="TextView">
+
+    <style name="TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">@style/Text</item>
-		<item name="fontFamily">@font/main_font</item>
+        <item name="fontFamily">@font/main_font</item>
     </style>
 
     <style name="TextView.Primary">
@@ -40,7 +40,8 @@
     <style name="Text.Secondary">
         <item name="android:textColor">@color/gray_dove_light</item>
     </style>
-	<style name="TextView.Primary.Header">
+
+    <style name="TextView.Primary.Header">
         <item name="android:textAppearance">@style/Text.Primary.Header</item>
     </style>
 
@@ -52,23 +53,32 @@
     <style name="Text.Primary.Bold">
         <item name="android:textStyle">bold</item>
     </style>
-	    <style name="TextIcon" parent="TextView.Secondary">
+
+    <style name="TextIcon" parent="TextView.Secondary">
         <item name="fontFamily">@font/main_font</item>
     </style>
 
     <style name="TextView.Primary.Bold">
         <item name="android:textAppearance">@style/Text.Primary.Bold</item>
     </style>
-	<style name="HalfWidth">
-		<item name="android:layout_width">0dp</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_weight">0.5</item>
-	</style>
+
+    <style name="HalfWidth">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">0.5</item>
+    </style>
+
     <style name="Theme.MyApplication.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="Theme.MyApplication.AppBarOverlay"
-        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MyApplication.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="Theme.MyApplication.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ThemeOverlay.MyApplication.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
 </resources>

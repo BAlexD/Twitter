@@ -8,7 +8,7 @@
 
 	<RelativeLayout
 		android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			android:paddingBottom="50dp">
 
@@ -28,17 +28,10 @@
 			android:layout_below="@+id/exitButton"
 			android:padding="8dp">
 
-			<de.hdodenhof.circleimageview.CircleImageView
-				android:id="@+id/comment_profile_image_view"
-				android:layout_width="48dp"
-				android:layout_height="48dp"
-				android:layout_marginEnd="@dimen/text_small_margin"
-				android:src="@mipmap/ic_launcher" />
-
 			<TextView
 				android:id="@+id/comment_author_name_text_view"
 				style="@style/TextView.Primary.Bold"
-				android:layout_toEndOf="@id/comment_profile_image_view"
+				android:layout_marginEnd="@dimen/text_small_margin"
 				android:text="Автор" />
 
 			<TextView
@@ -63,8 +56,8 @@
 				android:layout_height="wrap_content"
 				android:layout_below="@id/comment_author_name_text_view"
 				android:layout_marginTop="@dimen/text_small_margin"
-				android:layout_toEndOf="@id/comment_profile_image_view"
-				android:text="Текст постаfhhhhhhhhhhhhhhhhhhhhhhhhhhh." />
+				android:layout_marginEnd="@dimen/text_small_margin"
+				android:text="Текст поста." />
 
 
 		</RelativeLayout>
@@ -81,14 +74,15 @@
 			android:id="@+id/comment_list"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_below="@+id/delimeter_view" />
-			
-		<RelativeLayout
-			xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_below="@+id/delimeter_view"
+			android:layout_above="@+id/edit_comment_layout"/>
+
+		<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/edit_comment_layout"
 			android:layout_width="match_parent"
 			android:layout_height="100dp"
-			android:padding="8dp"
-			android:layout_below="@+id/comment_list">
+			android:layout_alignParentBottom="true"
+			android:padding="8dp">
 
 
 			<EditText
@@ -101,10 +95,10 @@
 
 			<Button
 				android:id="@+id/add_comment_button"
-				android:layout_alignParentEnd="true"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Добавить"/>
+				android:layout_alignParentEnd="true"
+				android:text="Добавить" />
 		</RelativeLayout>	
 	</RelativeLayout>
 </FrameLayout>
