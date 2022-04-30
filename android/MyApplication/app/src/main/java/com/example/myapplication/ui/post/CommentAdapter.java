@@ -55,7 +55,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     }
 
     class CommentViewHolder extends RecyclerView.ViewHolder {
-        private ImageView userImageView;
+
         private TextView nameTextView;
         private TextView nickTextView;
         private TextView creationDateTextView;
@@ -63,7 +63,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
         public CommentViewHolder(View itemView) {
             super(itemView);
-            userImageView = itemView.findViewById(R.id.profile_image_view);
+
             nameTextView = itemView.findViewById(R.id.author_name_text_view);
             nickTextView = itemView.findViewById(R.id.author_nick_text_view);
             creationDateTextView = itemView.findViewById(R.id.creation_date_text_view);
@@ -77,7 +77,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
             String creationDateFormatted = getFormattedDate(tweet.getCreationDate());
             creationDateTextView.setText(creationDateFormatted);
-            Picasso.with(itemView.getContext()).load(tweet.getUser().getImageUrl()).into(userImageView);
         }
 
         private String getFormattedDate(String rawDate) {
