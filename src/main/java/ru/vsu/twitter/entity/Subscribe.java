@@ -15,9 +15,7 @@ public class Subscribe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "PROFILE_ID")
-    private Long profile;
+    private Long profileId;
 
-    @JoinColumn(name = "SUBSCRIBER_ID")
-    private Long subscriber;
+    private Long subscriberId;
 }
