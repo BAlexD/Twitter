@@ -2,7 +2,6 @@ package com.example.myapplication.entities;
 
 public class User {
     private long id;
-    private String imageUrl;
     private String name;
     private String nick;
     private String description;
@@ -11,7 +10,6 @@ public class User {
     private int followersCount;
 
     public User(long id,
-                String imageUrl,
                 String name,
                 String nick,
                 String description,
@@ -19,7 +17,6 @@ public class User {
                 int followingCount,
                 int followersCount) {
         this.id = id;
-        this.imageUrl = imageUrl;
         this.name = name;
         this.nick = nick;
         this.description = description;
@@ -30,10 +27,6 @@ public class User {
 
     public long getId() {
         return id;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
     }
 
     public String getName() {
@@ -70,8 +63,6 @@ public class User {
         if (id != user.id) return false;
         if (followingCount != user.followingCount) return false;
         if (followersCount != user.followersCount) return false;
-        if (imageUrl != null ? !imageUrl.equals(user.imageUrl) : user.imageUrl != null)
-            return false;
         if (!name.equals(user.name)) return false;
         if (!nick.equals(user.nick)) return false;
         if (description != null ? !description.equals(user.description) : user.description != null) {
@@ -83,7 +74,6 @@ public class User {
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
         result = 31 * result + name.hashCode();
         result = 31 * result + nick.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
