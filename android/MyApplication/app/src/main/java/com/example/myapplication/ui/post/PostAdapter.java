@@ -98,8 +98,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                 public void onClick(View v) {
                     Post post = tweetList.get(getLayoutPosition());
                     onCommentClickListener.onCommentClick(post);
-                    String eventParameters = "{\"postID\":\""+post.getId()+"\"}";
-                    YandexMetrica.reportEvent("New comment", eventParameters);
+
                 }
             });
             likeButton.setOnClickListener(new View.OnClickListener() {

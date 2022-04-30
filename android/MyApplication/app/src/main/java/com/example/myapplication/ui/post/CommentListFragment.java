@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.entities.Comment;
 import com.example.myapplication.entities.Post;
 import com.example.myapplication.network.TestData;
+import com.example.myapplication.ui.user_info.UserInfoFragment;
+import com.yandex.metrica.YandexMetrica;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +32,7 @@ public class CommentListFragment  extends AppCompatActivity{
     private static final String MONTH_DAY_FORMAT = "MMM d"; // Oct 26
 
     public static final String POST_ID = "postId";
-    private ImageView userImageView;
+
     private TextView nameTextView;
     private TextView nickTextView;
     private TextView creationDateTextView;
@@ -36,6 +40,8 @@ public class CommentListFragment  extends AppCompatActivity{
     private ImageButton exitButtton;
     private CommentAdapter commentAdapter;
     private Collection<Comment> comments;
+    private EditText commentText;
+    private Button commentButton;
 
     private RecyclerView commentsRecyclerView;
 
@@ -47,12 +53,12 @@ public class CommentListFragment  extends AppCompatActivity{
         long postId = getIntent().getLongExtra(POST_ID, -1);
         Toast.makeText(this, "UserId = " + postId, Toast.LENGTH_SHORT).show();
 
-        userImageView = findViewById(R.id.comment_profile_image_view);
         nameTextView = findViewById(R.id.comment_author_name_text_view);
         nickTextView = findViewById(R.id.comment_author_nick_text_view);
         creationDateTextView = findViewById(R.id.comment_creation_date_text_view);
         contentTextView = findViewById(R.id.comment_tweet_content_text_view);
-
+        commentText = findViewById(R.id.comment_edit_text);
+        commentButton = findViewById(R.id.add_comment_button);
         exitButtton =findViewById(R.id.exitButton);
         exitButtton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +66,17 @@ public class CommentListFragment  extends AppCompatActivity{
                 onBackPressed();
             }
         });
+        commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (commentText.getText() != null){
+                    Toast.makeText(CommentListFragment.this, "comment " + postId+":"+commentText.getText(), Toast.LENGTH_SHORT).show();
+                    String eventParameters = "{\"postID\":\""+postId+"\"}";
+                    YandexMetrica.reportEvent("New comment", eventParameters);
+                }
+            }
+        });
+
         initRecyclerView();
         loadPostInfo(postId);
         loadComments(postId);

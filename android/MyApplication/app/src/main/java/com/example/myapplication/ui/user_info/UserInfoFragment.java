@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,12 +17,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.AddPostActivity;
 import com.example.myapplication.databinding.FragmentUserInfoBinding;
 import com.example.myapplication.entities.Post;
+import com.example.myapplication.entities.User;
 import com.example.myapplication.network.TestData;
+import com.example.myapplication.ui.login.NewUserLoginFragment;
 import com.example.myapplication.ui.post.CommentListFragment;
 import com.example.myapplication.ui.post.PostAdapter;
 import com.example.myapplication.ui.post.PostPrivateAdapter;
+import com.yandex.metrica.YandexMetrica;
 
 import java.util.Collection;
 
@@ -32,9 +37,12 @@ public class UserInfoFragment extends Fragment {
     private TextView descriptionTextView;
     private TextView followingCountTextView;
     private TextView followersCountTextView;
+    private Button addPostButton;
 
     private RecyclerView postsRecyclerView;
     private PostPrivateAdapter postPrivateAdapter;
+    private User user = TestData.getUser1();
+
 
     private FragmentUserInfoBinding binding;
 
@@ -61,6 +69,17 @@ public class UserInfoFragment extends Fragment {
         postsRecyclerView = binding.fragmentPost;
         postsRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         postsRecyclerView.setAdapter(getPostAdapter());
+
+        addPostButton = binding.addPostButton;
+        addPostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(UserInfoFragment.this.getActivity(), "new post " + nickTextView.getText(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UserInfoFragment.this.getActivity(), AddPostActivity.class);
+                intent.putExtra(AddPostActivity.USER_ID, user.getId());
+                startActivity(intent);
+            }
+        });
         return root;
     }
 
