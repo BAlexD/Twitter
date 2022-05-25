@@ -2,26 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication"
-        android:windowSoftInputMode="adjustPan">
+        android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".AddPostActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.login.NewUserLoginFragment"
-            android:exported="false" />
-        <activity
-            android:name=".SplashScreen"
+            android:name="com.example.myapplication.SplashScreen"
             android:exported="true"
             android:label="">
             <intent-filter>
@@ -31,9 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.myapplication.MainActivity"
             android:exported="false" />
-        <activity android:name=".ui.post.CommentListFragment" />
+        <activity android:name="com.example.myapplication.ui.post.CommentListFragment"/>
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>
