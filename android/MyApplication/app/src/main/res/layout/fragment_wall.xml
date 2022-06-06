@@ -18,23 +18,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-<LinearLayout
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:paddingBottom = "50dp">
-	
-	<View
-		android:id="@+id/delimeter_view"
-		android:layout_width="match_parent"
-		android:layout_height="6dp"
-		android:layout_marginTop="@dimen/text_small_margin"
-		android:background="@color/gray_mercury" />
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/wall_fragment_post"
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content" />
-		
-</LinearLayout>
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:paddingBottom="50dp"
+		tools:layout_editor_absoluteX="0dp"
+		tools:layout_editor_absoluteY="0dp">
+
+		<View
+			android:id="@+id/delimeter_view"
+			android:layout_width="match_parent"
+			android:layout_height="6dp"
+			android:layout_marginTop="@dimen/text_small_margin"
+			android:background="@color/gray_mercury" />
+		<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+			android:id="@+id/swipeRefreshLayout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/wall_fragment_post"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" />
+		</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+	</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

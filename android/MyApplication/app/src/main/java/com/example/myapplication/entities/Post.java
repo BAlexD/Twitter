@@ -3,17 +3,15 @@ package com.example.myapplication.entities;
 public class Post {
     private User user;
     private Long id;
-    private String creationDate;
     private String text;
     private Long commentCount;
     private Long favouriteCount;
     //private String imageUrl;
 
-    public Post(User user, Long id, String creationDate, String text,
+    public Post(Long id, User user,   String text,
                  Long commentCount, Long favouriteCount) {//, String imageUrl) {
         this.user = user;
         this.id = id;
-        this.creationDate = creationDate;
         this.text = text;
         this.commentCount = commentCount;
         this.favouriteCount = favouriteCount;
@@ -26,10 +24,6 @@ public class Post {
 
     public Long getId() {
         return id;
-    }
-
-    public String getCreationDate() {
-        return creationDate;
     }
 
     public String getText() {
@@ -57,7 +51,6 @@ public class Post {
 
         if (!user.equals(tweet.user)) return false;
         if (!id.equals(tweet.id)) return false;
-        if (!creationDate.equals(tweet.creationDate)) return false;
         if (!text.equals(tweet.text)) return false;
         if (!commentCount.equals(tweet.commentCount)) return false;
         if (!favouriteCount.equals(tweet.favouriteCount)) return false;
@@ -69,7 +62,6 @@ public class Post {
     public int hashCode() {
         int result = user.hashCode();
         result = 31 * result + id.hashCode();
-        result = 31 * result + creationDate.hashCode();
         result = 31 * result + text.hashCode();
         result = 31 * result + commentCount.hashCode();
         result = 31 * result + favouriteCount.hashCode();
