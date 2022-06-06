@@ -13,22 +13,14 @@
 		android:id="@+id/post_info"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:padding="5dp"
-		android:layout_toLeftOf="@+id/delete_container">
+		android:layout_toLeftOf="@+id/delete_container"
+		android:padding="5dp">
 
 		<TextView
 			android:id="@+id/author_nick_text_view"
 			style="@style/TextView.Primary.Bold"
 			android:text="Ник" />
 
-		<TextView
-			android:id="@+id/creation_date_text_view"
-			style="@style/TextView.Secondary"
-			android:layout_marginStart="@dimen/text_small_margin"
-			android:layout_toEndOf="@+id/author_nick_text_view"
-			android:ellipsize="end"
-			android:maxLines="1"
-			android:text="нояб. 27" />
 
 		<TextView
 			android:id="@+id/tweet_content_text_view"
@@ -38,7 +30,7 @@
 			android:layout_marginTop="@dimen/text_small_margin"
 			android:text="Текст поста." />
 
-		</RelativeLayout>
+	</RelativeLayout>
 
 	<RelativeLayout
 		android:id="@+id/delete_container"

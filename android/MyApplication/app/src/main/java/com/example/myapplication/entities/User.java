@@ -1,26 +1,18 @@
 package com.example.myapplication.entities;
 
 public class User {
-    private long id;
-    private String name;
+    private Long id;
     private String nick;
-    private String description;
-    private String location;
-    private int followingCount;
-    private int followersCount;
+    private Long followingCount;
+    private Long followersCount;
 
-    public User(long id,
-                String name,
+    public User(Long id,
                 String nick,
-                String description,
-                String location,
-                int followingCount,
-                int followersCount) {
+                Long followingCount,
+                Long followersCount) {
         this.id = id;
-        this.name = name;
         this.nick = nick;
-        this.description = description;
-        this.location = location;
+
         this.followingCount = followingCount;
         this.followersCount = followersCount;
     }
@@ -29,27 +21,17 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public String getNick() {
         return nick;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public int getFollowingCount() {
+    public Long getFollowingCount() {
         return followingCount;
     }
 
-    public int getFollowersCount() {
+    public Long getFollowersCount() {
         return followersCount;
     }
 
@@ -63,23 +45,16 @@ public class User {
         if (id != user.id) return false;
         if (followingCount != user.followingCount) return false;
         if (followersCount != user.followersCount) return false;
-        if (!name.equals(user.name)) return false;
         if (!nick.equals(user.nick)) return false;
-        if (description != null ? !description.equals(user.description) : user.description != null) {
-            return false;
-        }
-        return location != null ? location.equals(user.location) : user.location == null;
+        return true;
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + name.hashCode();
         result = 31 * result + nick.hashCode();
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + followingCount;
-        result = 31 * result + followersCount;
+        result = 31 * result + (int)(followingCount^ (followingCount >>> 32));
+        result = 31 * result + (int)(followersCount^ (followersCount >>> 32));
         return result;
     }
 }
