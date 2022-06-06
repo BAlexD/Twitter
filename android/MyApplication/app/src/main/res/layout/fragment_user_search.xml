@@ -5,12 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.search.UserSearchFragment">
+
+	<TextView
+		android:id="@+id/text_dashboard_user_search"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="8dp"
+		android:textAlignment="center"
+		android:textSize="20sp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 	<RelativeLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="match_parent"
 		android:layout_height="100dp"
 		android:padding="8dp">
@@ -18,10 +31,11 @@
 		<EditText
 			android:id="@+id/search_edit_text"
 			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:layout_marginEnd="20dp"
 			android:layout_toStartOf="@+id/search_button"
-			android:layout_height="wrap_content"
-			android:hint="Введите имя"/>
+			android:hint="Введите имя"
+			android:singleLine="true" />
 
 		<Button
 			android:id="@+id/search_button"
@@ -30,11 +44,14 @@
 			android:layout_height="wrap_content"
 			android:text="Поиск"/>
 	</RelativeLayout>
-		
+	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+		android:id="@+id/swipeRefreshLayout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
 	<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/users_search_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
+	</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>	
 </androidx.constraintlayout.widget.ConstraintLayout>

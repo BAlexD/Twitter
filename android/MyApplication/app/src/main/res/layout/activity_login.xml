@@ -36,10 +36,10 @@
             android:id="@+id/user_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_below="@+id/Login"
-            android:layout_marginTop="75dp"
+            android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="75dp"
             android:text="Пользователь:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -51,7 +51,8 @@
             android:layout_marginLeft="35dp"
             android:layout_marginBottom="0dp"
             android:layout_toRightOf="@+id/user_text"
-            android:hint="введите логин ">
+            android:hint="введите логин "
+            android:singleLine="true">
 
             <requestFocus />
         </EditText>
@@ -60,8 +61,8 @@
             android:id="@+id/password_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/user_text"
             android:layout_below="@+id/user_text"
+            android:layout_alignLeft="@+id/user_text"
             android:layout_marginTop="40dp"
             android:text="Пароль:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -96,14 +97,14 @@
             android:layout_marginTop="5dp"
             android:text="Регистрация" />
 
-        <Button
+        <com.google.android.gms.common.SignInButton
             android:id="@+id/button_email_login"
-            android:layout_width="142dp"
+            android:layout_width="146dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button_register"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:text="Вход Gmail" />
+            android:layout_marginTop="5dp" />
+
 
 
         <TextView
