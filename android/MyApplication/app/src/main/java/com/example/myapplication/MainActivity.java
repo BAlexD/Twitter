@@ -18,6 +18,7 @@ import com.example.myapplication.ui.login.LoginActivity;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private long userId;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -30,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.exit_application) {
-            MainActivity.this.finish();
+            this.finishAffinity();
+            //MainActivity.this.finish();
         }
-        if (id == R.id.authorization) {
+        /*if (id == R.id.authorization) {
             Intent mainIntent = new Intent(MainActivity.this, LoginActivity.class);
             MainActivity.this.startActivity(mainIntent);
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
     @Override
@@ -45,12 +47,18 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
+        AppBarConfiguration  appBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                    .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+
     }
 
+    public long getUserId(){
+        return userId;
+    }
 }
