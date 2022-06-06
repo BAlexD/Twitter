@@ -6,16 +6,68 @@
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/gray_mercury</item>
+        <item name="colorOnSecondary">@color/gray_mercury</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
 
     <style name="ThemeOverlay.MyApplication.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@color/light_blue_900</item>
         <item name="fullscreenTextColor">@color/light_blue_A400</item>
+        <item name="android:textAppearance">@style/Text</item>
+        <item name="fontFamily">@font/main_font</item>
     </style>
+
+    <style name="TextView.Primary">
+        <item name="android:textAppearance">@style/Text.Primary</item>
+        <item name="android:textColor">@color/gray_dove_light</item>
+    </style>
+
+    <style name="TextView.Secondary">
+        <item name="android:textAppearance">@style/Text.Secondary</item>
+        <item name="android:textColor">@color/gray_dove_light</item>
+    </style>
+
+    <style name="Text">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Text.Primary">
+        <item name="android:textColor">@color/gray_dove_light</item>
+    </style>
+
+    <style name="Text.Secondary">
+        <item name="android:textColor">@color/gray_dove_light</item>
+    </style>
+
+    <style name="TextView.Primary.Header">
+        <item name="android:textAppearance">@style/Text.Primary.Header</item>
+        <item name="android:textColor">@color/gray_dove_light</item>
+    </style>
+
+    <style name="Text.Primary.Header">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gray_dove_light</item>
+    </style>
+
+    <style name="Text.Primary.Bold">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gray_dove_light</item>
+    </style>
+
+    <style name="TextIcon" parent="TextView.Secondary">
+        <item name="fontFamily">@font/main_font</item>
+        <item name="android:textColor">@color/gray_dove_light</item>
+    </style>
+
+    <style name="TextView.Primary.Bold">
+        <item name="android:textAppearance">@style/Text.Primary.Bold</item>
+        <item name="android:textColor">@color/gray_dove_light</item>
+    </style>
+
 </resources>

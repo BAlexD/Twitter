@@ -11,62 +11,56 @@ public class TestData {
     public static User getUser() {
         return new User(
                 1L,
-                "http://i.imgur.com/DvpvklR.png",
-                "Польователь1",
                 "Ник1",
-                "Sample description",
-                "Россия",
-                3,
-                5
+                3L,
+                5L
         );
     }
     public static User getUser1() {
         return new User(
                 1L,
-                "http://i.imgur.com/DvpvklR.png",
-                "Польователь2",
                 "Ник2",
-                "Sample description",
-                "Испания",
-                3,
-                5
+                3L,
+                5L
         );
     }
     public static User getUser2() {
         return new User(
                 1L,
-                "http://i.imgur.com/DvpvklR.png",
-                "Польователь3",
                 "Ник3",
-                "Sample description",
-                "Грузия",
-                3,
-                5
+                3L,
+                5L
         );
     }
 
+    public static Post getPost() {
+        return new Post(1L,getUser(),   "Очень длинное описание твита 1",
+                4L, 4L
+        );
+    }
     public static Collection<Comment> getComments() {
         return Arrays.asList(
-                new Comment(getUser(), "Comment1", "Thu Dec 11 07:31:08 +0000 2017"),
+                new Comment(1L, getUser(), "Comment1", getPost()),
 
-                new Comment(getUser(), "Comment2", "Thu Dec 11 07:31:08 +0000 2017"),
+                new Comment(2L, getUser(), "Comment2", getPost()),
 
-                new Comment(getUser(), "Comment3", "Thu Dec 11 07:31:08 +0000 2017")
+                new Comment(3L, getUser(), "Comment3", getPost())
         );
     }
+
 
     public static Collection<Post> getTweets() {
         return Arrays.asList(
-                new Post(getUser(), 1L, "Thu Dec 13 07:31:08 +0000 2017", "Очень длинное описание твита 1\nблаблабла",
+                new Post(1L,getUser(),   "Очень длинное описание твита 1",
                         4L, 4L),
 
-                new Post(getUser1(), 2L, "Thu Dec 12 07:31:08 +0000 2017", "Очень длинное описание твита 2\nблаблабла\nблаблабла",
+                new Post(2L,getUser1(),   "Очень длинное описание твита 2",
                         5L, 5L),
 
-                new Post(getUser2(), 3L, "Thu Dec 11 07:31:08 +0000 2017", "Очень длинное описание твита 3\nблаблабла",
+                new Post(3L,  getUser2(), "Очень длинное описание твита 3",
                         6L, 6L),
 
-                new Post(getUser(), 3L, "Thu Dec 11 07:31:08 +0000 2017", "Очень длинное описание твита 4",
+                new Post(3L,getUser(),   "Очень длинное описание твита 4",
                         6L, 6L)
         );
     }

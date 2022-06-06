@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
 
     <style name="TextView">
@@ -44,6 +45,7 @@
     <style name="TextView.Primary.Header">
         <item name="android:textAppearance">@style/Text.Primary.Header</item>
     </style>
+
 
     <style name="Text.Primary.Header">
         <item name="android:textSize">22sp</item>
