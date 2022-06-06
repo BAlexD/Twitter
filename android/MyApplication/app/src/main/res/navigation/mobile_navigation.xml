@@ -22,4 +22,5 @@
         android:name="com.example.myapplication.ui.search.UserSearchFragment"
         android:label="MYWALL"
         tools:layout="@layout/fragment_user_search" />
+
 </navigation>
