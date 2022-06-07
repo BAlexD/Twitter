@@ -41,12 +41,13 @@ public class LikesService {
         return likesMapper.likesToLikesResponse(likesRepository.save(likes));
     }
 
-    public LikesResponse updateLikes(LikesUpdateRequest likesUpdateRequest) {
-        if (!likesRepository.existsById(likesUpdateRequest.getId())) {
-            throw new RuntimeException("there is no user with such id");
+    public void updateLike(LikesUpdateRequest likesUpdateRequest) {
+        Optional<Likes> likeByUserIdAndPostId = likesRepository.findLikesByUserIdAndPostId(likesUpdateRequest.getUserId(), likesUpdateRequest.getPostId());
+        if (likeByUserIdAndPostId.isPresent()) {
+            this.likesRepository.deleteById((likeByUserIdAndPostId.get()).getId());
+        } else {
+            this.likesRepository.save(likesMapper.updateRequestToLikes(likesUpdateRequest));
         }
-        Likes likes = likesMapper.updateRequestToLikes(likesUpdateRequest);
-        return likesMapper.likesToLikesResponse(likesRepository.save(likes));
     }
 
     public void deleteLikesById(Long id) {
@@ -54,5 +55,20 @@ public class LikesService {
             throw new RuntimeException("there is no user with such id");
         }
         likesRepository.deleteById(id);
+    }
+    
+   public List<LikesResponse> getLikesByPostId(Long postId) {
+        List<Likes> allLikesByPotId = this.likesRepository.getAllByPostId(postId);
+        return allLikesByPotId.stream()
+                .map(likesMapper::likesToLikesResponse);
+    }
+
+    public Integer getLikesCountByPostId(Long postId) {
+        PostResponse postById = this.postService.getPostById(postId);
+        return this.likesRepository.countLikeByPostId(postById.getId());
+    }
+
+    public Boolean isPostLiked(Long userId, Long PostId) {
+        return this.likesRepository.existsLikeByUserIdAndPostId(userId, PostId);
     }
 }
