@@ -8,6 +8,7 @@ import ru.vsu.twitter.dto.user.UserResponse;
 import ru.vsu.twitter.dto.user.UserUpdateRequest;
 import ru.vsu.twitter.service.user.UserService;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RestController
@@ -34,7 +35,7 @@ public class UserController {
 
     @PostMapping
     @Operation(summary = "Добавляет пользователя")
-    public ResponseEntity<UserResponse> addUser(@RequestBody UserCreateRequest userCreateRequest) {
+    public ResponseEntity<UserResponse> addUser(@RequestBody UserCreateRequest userCreateRequest) throws NoSuchAlgorithmException {
         return ResponseEntity.ok(userService.saveUser(userCreateRequest));
     }
 
@@ -51,4 +52,15 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/authorize")
+    @Operation(summary = "Возвращает пользователя по логину и паролю")
+    public ResponseEntity<UserResponse> authorize(@RequestParam String login, @RequestParam String password) throws NoSuchAlgorithmException {
+        return ResponseEntity.ok(userService.findByLoginAndPassword(login, password));
+    }
+
+    @GetMapping("/search")
+    @Operation(summary = "Возвращает пользователя по совпадению логина")
+    public ResponseEntity<List<UserResponse>> search(@RequestParam String filter, @RequestParam Integer page, @RequestParam Integer size) {
+        return ResponseEntity.ok(userService.searchByFilter(filter, page, size));
+    }
 }
