@@ -49,10 +49,25 @@ public class PostService {
         return postMapper.postToPostResponse(postRepository.save(post));
     }
 
+    @Transactional
     public void deletePostById(Long id) {
+        this.likeRepository.deleteAllByPostId(id);
+        this.commentsRepository.deleteAllByPostId(id);
         if (!postRepository.existsById(id)) {
             throw new RuntimeException("there is no post with such id");
+        } else {
+            postRepository.deleteById(id);
         }
-        postRepository.deleteById(id);
+    }
+
+    public List<PostResponse> getAllPostsByUserId(Long userId) {
+        List<Post> postsByUserId = this.postRepository.findAllByUserId(userId);
+        return postsByUserId.stream().map(postMapper::postToPostResponse).collect(Collectors.toList());
+    }
+
+    public List<PostResponse> getAllSubscribesPost(Long profileId, Integer page, Integer size) {
+        List<Long> subIds = subscribeService.getSubscribersByProfileId(profileId).stream().map(UserResponse::getId).collect(Collectors.toList());
+        List<Post> posts = postRepository.findAllByUserIdIn(subIds, PageRequest.of(page, size));
+        return posts.stream().map(postMapper::postToPostResponse).collect(Collectors.toList());
     }
 }
