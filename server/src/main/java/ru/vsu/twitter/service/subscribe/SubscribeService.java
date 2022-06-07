@@ -42,18 +42,37 @@ public class SubscribeService {
         return subscribeMapper.subscribeToSubscribeResponse(subscribeRepository.save(subscribe));
     }
 
-    public SubscribeResponse updateSubscribe(SubscribeUpdateRequest subscribeUpdateRequest) {
-        if (!subscribeRepository.existsById(subscribeUpdateRequest.getId())) {
-            throw new RuntimeException("there is no subscribe with such id");
+     public void updateSubscribe(SubscribeUpdateRequest subscribeUpdateRequest) {
+        Optional<Subscribe> subscribe = subscribeRepository.findByProfileIdAndSubscriberId(subscribeUpdateRequest.getProfileId(), subscribeUpdateRequest.getSubscriberId());
+        if (subscribe.isPresent()) {
+            this.subscribeRepository.deleteById(((Subscribe)subscribe.get()).getId());
+        } else {
+            subscribeRepository.save(subscribeMapper.updateRequestToSubscribe(subscribeUpdateRequest));
         }
-        Subscribe subscribe = subscribeMapper.updateRequestToSubscribe(subscribeUpdateRequest);
-        return subscribeMapper.subscribeToSubscribeResponse(subscribeRepository.save(subscribe));
+
     }
 
-    public void deleteSubscribeById(Long id) {
-        if (!subscribeRepository.existsById(id)) {
-            throw new RuntimeException("there is no subscribe with such id");
-        }
-        subscribeRepository.deleteById(id);
+    public Integer getSubscribersCountByProfileId(Long profileId) {
+        UserResponse userById = userService.getUserById(profileId);
+        return subscribeRepository.countSubscribeByProfileId(userById.getId());
+    }
+
+    public Integer getSubscribesCountByProfileId(Long profileId) {
+        UserResponse userById = userService.getUserById(profileId);
+        return subscribeRepository.countSubscribeBySubscriberId(userById.getId());
+    }
+
+    public List<UserResponse> getSubscribesByProfileId(Long profileId) {
+        List<Subscribe> allByProfileId = subscribeRepository.getAllBySubscriberId(profileId);
+        return userService.findAllByIds(allByProfileId.stream().map(Subscribe::getSubscriberId).collect(Collectors.toList()));
+    }
+
+    public List<UserResponse> getSubscribersByProfileId(Long profileId) {
+        List<Subscribe> allByProfileId = subscribeRepository.getAllByProfileId(profileId);
+        return userService.findAllByIds(allByProfileId.stream().map(Subscribe::getSubscriberId).collect(Collectors.toList()));
+    }
+
+    public Boolean isUserSubscribe(Long profileId, Long subscriberId) {
+        return subscribeRepository.existsByProfileIdAndSubscriberId(profileId, subscriberId);
     }
 }
