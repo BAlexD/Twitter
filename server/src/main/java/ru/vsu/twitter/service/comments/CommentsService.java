@@ -42,18 +42,30 @@ public class CommentsService {
         return commentsMapper.commentsToCommentsResponse(commentsRepository.save(comments));
     }
 
-    public CommentsResponse updateComments(CommentsUpdateRequest commentsUpdateRequest) {
-        if (!commentsRepository.existsById(commentsUpdateRequest.getId())) {
+    public CommentResponse updateComments(CommentUpdateRequest commentUpdateRequest) {
+        if (!commentsRepository.existsById(commentUpdateRequest.getId())) {
             throw new RuntimeException("there is no comments with such id");
+        } else {
+            Comment comment = commentsMapper.updateRequestToComments(commentUpdateRequest);
+            return commentsMapper.commentsToCommentsResponse(this.commentsRepository.save(comment));
         }
-        Comments comments = commentsMapper.updateRequestToComments(commentsUpdateRequest);
-        return commentsMapper.commentsToCommentsResponse(commentsRepository.save(comments));
     }
 
     public void deleteCommentsById(Long id) {
         if (!commentsRepository.existsById(id)) {
             throw new RuntimeException("there is no user with such id");
+        } else {
+            commentsRepository.deleteById(id);
         }
-        commentsRepository.deleteById(id);
     }
+
+    public List<CommentResponse> getAllCommentByPostId(Long id) {
+        List<CommentResponse> commentResponses = commentsRepository.findAllByPostId(id).stream();
+        return commentResponses.stream().map(commentsMapper::commentsToCommentsResponse).collect(Collectors.toList())
+    }
+
+    public Long getCommentCountByPostId(Long id) {
+        return commentsRepository.countCommentsByPostId(id);
+    }
+}
 }
