@@ -65,9 +65,9 @@ public class PostRequestSender {
      */
     //TODO посты пользователя по подпискам
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Collection<Post> getSubscribersPosts(String body) throws IOException{
+    public Collection<Post> getSubscribersPosts(String body, String page) throws IOException{
         String encodedBody = URLEncoder.encode(body, "UTF-8");
-        HttpGet httpGet = new HttpGet(postEndpoint + "/subscribes/" + encodedBody);
+        HttpGet httpGet = new HttpGet(postEndpoint + "/subscribes/" + encodedBody+ "?page="+page + "&size=4");
         String posts = RequestUtils.executeGet(httpGet);
         List<Post> postsColl = getPostsFromString(posts);
         return postsColl;

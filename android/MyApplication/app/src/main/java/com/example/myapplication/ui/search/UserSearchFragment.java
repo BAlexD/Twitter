@@ -41,6 +41,9 @@ public class UserSearchFragment extends Fragment {
     private UserSearchAdapter userSearchAdapter;
     private UserSearchNotSubscribedAdapter userSearchNotSubscribedAdapter;
 
+    private int page = 0;
+    private boolean pagingFlag = true;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         UserSearchViewModel searchViewModel =
@@ -57,7 +60,21 @@ public class UserSearchFragment extends Fragment {
         currentUser = app.getCurrentUser();
 
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        usersRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (pagingFlag && !recyclerView.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    page += 1;
+                    SearchUsers searchUsers = new SearchUsers();
+                    if (!login.getText().toString().equals(""))
+                        searchUsers.execute(login.getText().toString(), Integer.toString(page));
+                }
+
+            }
+        });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +103,8 @@ public class UserSearchFragment extends Fragment {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(false);
+                page = 0;
+                pagingFlag = true;
                 if(currentUser == null){
                     if(userSearchAdapter != null) {
                         if (userSearchAdapter.getItemCount() != 0) {
@@ -115,6 +134,8 @@ public class UserSearchFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        page = 0;
+        pagingFlag = true;
         if(currentUser == null){
             try {
                 usersRecyclerView.setAdapter(getUserSearchNotSubscribedAdapter());
@@ -155,7 +176,7 @@ public class UserSearchFragment extends Fragment {
 
         SearchUsers searchUsers = new SearchUsers();
         if (!login.getText().toString().equals(""))
-            searchUsers.execute(login.getText().toString());
+            searchUsers.execute(login.getText().toString(), Integer.toString(0));
         return userSearchAdapter;
     }
 
@@ -163,7 +184,7 @@ public class UserSearchFragment extends Fragment {
         userSearchNotSubscribedAdapter = new UserSearchNotSubscribedAdapter();
         SearchUsers searchUsers = new SearchUsers();
         if (!login.getText().toString().equals(""))
-            searchUsers.execute(login.getText().toString());
+            searchUsers.execute(login.getText().toString(), Integer.toString(0));
         return userSearchNotSubscribedAdapter;
     }
 
@@ -195,7 +216,7 @@ public class UserSearchFragment extends Fragment {
         protected Void doInBackground(String... body) {
             try{
                 UserRequestSender userRequestSender = new UserRequestSender();
-                users = userRequestSender.getUsers(body[0]);
+                users = userRequestSender.getUsers(body[0], body[1]);
                 if (currentUser != null){
                     User del = null;
                     for(User user: users){
@@ -217,8 +238,10 @@ public class UserSearchFragment extends Fragment {
             super.onPostExecute(aVoid);
             final TextView textView = binding.textDashboardUserSearch;
             if (users.size() == 0){
-
-                textView.setText("Пользователи не найдены");
+                if (page == 0){
+                    textView.setText("Пользователи не найдены");
+                }
+                pagingFlag = false;
             }else{
                 textView.setText("");
             }

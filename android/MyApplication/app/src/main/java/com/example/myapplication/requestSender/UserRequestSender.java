@@ -66,9 +66,9 @@ public class UserRequestSender {
      */
     //TODO получить пользователей поиском
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Collection<User> getUsers(String body) throws IOException {
+    public Collection<User> getUsers(String body, String page) throws IOException {
         String encodedBody = URLEncoder.encode(body, "UTF-8");
-        HttpGet httpGet = new HttpGet(userEndpoint + "/search?filter=" + encodedBody);
+        HttpGet httpGet = new HttpGet(userEndpoint + "/search?filter=" + encodedBody + "&page="+page + "&size=10");
         String users = RequestUtils.executeGet(httpGet);
         List<User> users_ = new ArrayList<>();
         List<String> usersStrings = RequestUtils.splitJsonToList(users);

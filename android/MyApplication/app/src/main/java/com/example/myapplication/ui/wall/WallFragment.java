@@ -44,6 +44,8 @@ public class WallFragment extends Fragment {
     private User currentUser = null;
 
     private SwipeRefreshLayout swipeRefreshLayout;
+    private int page = 0;
+    private boolean pagingFlag = true;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +64,21 @@ public class WallFragment extends Fragment {
         postsRecyclerView = binding.wallFragmentPost;
         postsRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
+        postsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (currentUser != null && pagingFlag) {
+                    if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        page += 1;
+                        GetPostsSubscribers getPostsSubscribers = new GetPostsSubscribers();
+                        getPostsSubscribers.execute(Long.toString(currentUser.getId()), Integer.toString(page));
+                    }
+                }
+            }
+        });
+
         if (currentUser != null){
             postsRecyclerView.setAdapter(getPostAdapter());
         }else{
@@ -72,6 +89,8 @@ public class WallFragment extends Fragment {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(false);
+                page = 0;
+                pagingFlag = true;
                 if (currentUser != null){
                     postsRecyclerView.setAdapter(getPostAdapter());
                 }else{
@@ -85,6 +104,8 @@ public class WallFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        page = 0;
+        pagingFlag = true;
         final MyApplication app = (MyApplication) WallFragment.this.getActivity().getApplicationContext();
 
         if(app.isUpdateWallFlag()){
@@ -129,7 +150,7 @@ public class WallFragment extends Fragment {
         postAdapter = new PostAdapter(onCommentClickListener, onLikeClickListener, setButtonLike);
 
         GetPostsSubscribers getPostsSubscribers = new GetPostsSubscribers();
-        getPostsSubscribers.execute(Long.toString(currentUser.getId()));
+        getPostsSubscribers.execute(Long.toString(currentUser.getId()), Integer.toString(0));
 
         return postAdapter;
     }
@@ -167,7 +188,7 @@ public class WallFragment extends Fragment {
         protected Void doInBackground(String... body) {
             try{
                 PostRequestSender postRequestSender = new PostRequestSender();
-                posts = postRequestSender.getSubscribersPosts(body[0]);
+                posts = postRequestSender.getSubscribersPosts(body[0], body[1]);
             }catch (IOException e){
                 e.printStackTrace();
             }
@@ -177,11 +198,13 @@ public class WallFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if (posts.size() == 0){
-                final TextView textView = binding.textDashboard;
-                dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+            if (posts.size() == 0 ){
+                if (page == 0){
+                    final TextView textView = binding.textDashboard;
+                    dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+                }
+                pagingFlag = false;
             }
-            postAdapter.clearItems();
             postAdapter.setItems(posts);
         }
     }
