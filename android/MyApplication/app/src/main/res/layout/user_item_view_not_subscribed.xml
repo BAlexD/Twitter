@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/user_info_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/user_nick_text_view_search"
+            style="@style/TextView.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_small_margin"
+            android:layout_marginTop="@dimen/text_small_margin"
+            android:text="НИК" />
+
+        <TextView
+            android:id="@+id/following_count_text_view_search"
+            style="@style/TextView.Primary.Bold"
+            android:layout_below="@+id/user_nick_text_view_search"
+            android:layout_marginTop="15dp"
+            android:text="4" />
+
+        <TextView
+            android:id="@+id/following_text_view"
+            style="@style/TextView.Secondary"
+            android:layout_below="@+id/user_nick_text_view_search"
+            android:layout_marginStart="@dimen/text_small_margin"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/following_count_text_view_search"
+            android:text="Читает" />
+
+        <TextView
+            android:id="@+id/followers_count_text_view_search"
+            style="@style/TextView.Primary.Bold"
+            android:layout_below="@+id/following_text_view"
+            android:layout_marginTop="@dimen/text_small_margin"
+            android:text="4" />
+
+        <TextView
+            android:id="@+id/followers_text_view"
+            style="@style/TextView.Secondary"
+            android:layout_below="@+id/following_text_view"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/text_small_margin"
+            android:layout_toEndOf="@+id/followers_count_text_view_search"
+            android:text="Читатели" />
+
+    </RelativeLayout>
+</RelativeLayout>
