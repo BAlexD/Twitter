@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+		
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="5dp">
+
+		<TextView
+			android:id="@+id/author_nick_text_view_no_buttons"
+			style="@style/TextView.Secondary"
+			android:text="Ник" />
+
+
+		<TextView
+			android:id="@+id/tweet_content_text_view_no_buttons"
+			style="@style/TextView.Primary"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/author_nick_text_view_no_buttons"
+			android:layout_marginTop="@dimen/text_small_margin"
+			android:text="Текст поста." />
+
+	</RelativeLayout>
+
+</RelativeLayout>
+
+
+	
+
