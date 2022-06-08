@@ -15,4 +15,4 @@ APK-файл: https://drive.google.com/file/d/1oQh-V6hW9wwkixKFU8VtpUirYWcgyP6l/
   
   рализация серверной части: https://disk.yandex.ru/i/QG6U3UGP2s2cIg
   
-  реализация клиентской части: 
+  реализация клиентской части: https://drive.google.com/file/d/1CtM8fQ0jX4qzee8Mm3HgnQ8OXuXvOX3z/view?usp=sharing
